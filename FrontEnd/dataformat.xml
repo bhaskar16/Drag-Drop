@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<!DOCTYPE userdb [
+<!ELEMENT userdb (user*)>
+<!ELEMENT user (name,pass,lastlogin,designs)>
+<!ATTLIST user id ID #REQUIRED>
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT pass (#PCDATA)>
+<!ELEMENT lastlogin (#PCDATA)>
+<!ELEMENT designs (island*)>
+<!ELEMENT island (watchtowers,wall,boats,cannons,barracks,weapon-caches)>
+<!ATTLIST island
+id ID #REQUIRED
+type (1|2) #REQUIRED>
+<!ELEMENT watchtowers (tower*)>
+<!ELEMENT tower (#PCDATA)>
+<!ATTLIST tower
+id ID #REQUIRED
+type (1|2) #REQUIRED>
+<!ELEMENT boats (boat*)>
+<!ELEMENT boat (#PCDATA)>
+<!ATTLIST boat
+id ID #REQUIRED
+type (1|2) #REQUIRED>
+<!ELEMENT cannons (cannon*)>
+<!ELEMENT cannon (#PCDATA)>
+<!ATTLIST cannon
+id ID #REQUIRED
+type (1|2) #REQUIRED>
+<!ELEMENT barracks (barrack*)>
+<!ELEMENT barrack (#PCDATA)>
+<!ATTLIST barrack
+id ID #REQUIRED
+type (1|2) #REQUIRED>
+<!ELEMENT weapon-caches (cache*)>
+<!ELEMENT cache (#PCDATA)>
+<!ATTLIST cache
+id ID #REQUIRED
+type (1|2) #REQUIRED>
+<!ELEMENT wall EMPTY>
+<!ATTLIST wall
+type (0|1|2) "0">
+]> 
+
+<userdb>  
+  <user id="1">
+    <name>abc</name>
+    <pass>1234</pass>
+    <lastlogin>dd-mm-yyyy</lastlogin>
+    <designs>
+      <island id="1" type="1">
+        <watchtowers>
+          <tower id="1" type="1"></tower>
+          <tower id="2" type="2"></tower>
+        </watchtowers>
+        <wall type="2"></wall>
+	<boats>
+	  <boat id="1" type="1"></boat>
+	</boats>
+	<cannons>
+	  <cannon id="1" type="1"></cannon>
+	</cannons>
+	<barracks>
+	  <barrack id="1" type="1"></barrack>
+	  <barrack id="2" type="1"></barrack>
+	</barracks>
+	<weapons-caches>
+	  <cache id="1" type="1"></cache>
+	  <cache id="2" type="2"></cache>
+	</weapons-caches>
+      </island>
+      <island id="2" type="1">
+        <watchtowers>
+          <tower id="1" type="1"></tower>
+          <tower id="2" type="2"></tower>
+        </watchtowers>
+        <wall type="2"></wall>
+	<boats>
+	  <boat id="1" type="1"></boat>
+	</boats>
+	<cannons>
+	  <cannon id="1" type="1"></cannon>
+	</cannons>
+	<barracks>
+	  <barrack id="1" type="1"></barrack>
+	  <barrack id="2" type="1"></barrack>
+	</barracks>
+	<weapons-caches>
+	  <cache id="1" type="1"></cache>
+	  <cache id="2" type="2"></cache>
+	</weapons-caches>
+      </island>
+    </designs>
+  </user>
+  <user id="2">
+    <name>pqrs</name>
+    <pass>9087</pass>
+    <lastlogin>dd-mm-yyyy</lastlogin>
+    <designs></designs>
+  </user>
+</userdb>

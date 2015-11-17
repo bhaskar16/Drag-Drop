@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>My Canvas</title>
+
+      
+   
+  <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet" />
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+
+
+    
+    <script src="js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="css/simple-sidebar.css" rel="stylesheet">
+
+
+</head>
+
+<body   >
+    <script>
+	var type = new Array();var top_pos = new Array();var left_pos = new Array();
+	  function StringtoXML(oString) {
+		//code for IE
+		if (window.ActiveXObject) { var oXML = new ActiveXObject("Microsoft.XMLDOM");oXML.loadXML(oString);return oXML; }
+		// code for Chrome, Safari, Firefox, Opera, etc. 
+		else { return (new DOMParser()).parseFromString(oString, "text/xml"); }
+	} function loadArr(str) {
+		var xml = StringtoXML(str);var elements = xml.documentElement.childNodes;
+		var id, top, left, i;for(i=0;i<elements.length;i++) {
+			id = elements[i].nodeName + '_' + elements[i].getAttribute("type");
+			top = ((elements[i].childNodes[0]).childNodes[0]).nodeValue;
+			left = ((elements[i].childNodes[1]).childNodes[0]).nodeValue;
+			type.push(id);top_pos.push(top);left_pos.push(left);
+		}
+	} function showMe() {
+	  var str = '<?xml version="1.0" encoding="utf-8"?><design>';
+	  str += '<watchtower type="1"><top>400</top><left>300</left></watchtower>';
+	  str += '<cannon type="1"><top>350</top><left>450</left></cannon>';
+	  str += '<boat type="1"><top>300</top><left>500</left></boat>';
+	  str += '<boat type="2"><top>500</top><left>450</left></boat></design>';
+	  loadArr(str);console.log(type);console.log(top_pos);console.log(left_pos);
+	  alert(type + '\n' + top_pos + '\n' + left_pos);
+	}
+
+function render(){
+showMe();
+for (var i = 0 ;i <type.length;i++){
+ document.getElementById(type[i]).style.left=left_pos[i]+"px";
+  document.getElementById(type[i]).style.top=top_pos[i]+"px";
+ 
+} 
+}
+//
+</script>
+<style>
+
+  .image{ width: 50px; height: 50px;postion:absolute; }
+      #droppable {
+      z-index:-1;
+      }
+	  body { overflow-y:scroll }
+  </style>
+<style type="text/css">
+
+   </style>
+
+    <div id="wrapper">
+
+       
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-brand">
+                    <a href="#">
+                       My Island
+                    </a>
+					
+                </li>
+                <li>
+				<button type="button" class="btn btn-danger btn-lg" onclick="render()" >Render My Design</button> 
+				<br/>
+                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#type1">Watchtowers</button>
+					<!--<div id="type1" class="collapse" style="z-index:2">-->
+					<br/>
+					
+					<img id="watchtower_1" style="position:absolute; left: 5; top: 10; width: 50px;height: 50px;" src="images/LH1.jpe"   />
+					<img style="position:absolute; left: 56px; top: 10; width: 50px;height: 50px;" src="images/LH2.jpeg"  id="watchtower_2"/>
+					
+					<br/>
+					
+                </li>
+                <li>
+				<br/>
+                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#type2">cannons</button>
+					<br/>
+					<!--<div id="type2" class="collapse" > -->
+					
+					<img style="position:absolute; left: 5; top: 90; width: 50px;height: 50px;" src="images/canon1.png" id="cannon_1" />
+					<img style="position:absolute; left: 56px; top: 90; width: 50px;height: 50px;" src="images/canon2.jpg" id="cannon_2" />
+			
+					<br/>
+					
+					
+                </li>
+                <li>
+				<br/>
+				
+                    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#type3">Boats</button>
+					<br/>
+					<!--<div id="type3" class="collapse">-->
+					<img  style="position:absolute; left: 5; top: 170; width: 50px;height: 50px;" src="images/Boat1.jpg" id="boat_1"/>
+					<img  style="position:absolute; left: 56px; top: 170; width: 50px;height: 50px;" src="images/Boat2.jpg" id="boat_2"/>
+					
+					<br/>
+					
+                </li>
+				<hr>
+				<li>
+                 
+				 </li>
+            </ul>
+			
+        </div>
+
+        
+            <div class="container-fluid">
+                 <div class="row">
+				<div class="col-lg-12">
+					
+                       <!-- <h1>[User]'s Island</h1><a href="#menu-toggle" class="btn btn-warning" id="menu-toggle">&nbsp;&nbsp;&nbsp;&nbsp;Set up defenses&nbsp;&nbsp;&nbsp;&nbsp;</a>
+						<hr> -->
+						<br/>
+                      
+                    <img  id="island" src="images/island.jpg" style="width:875px;height:600px;position:absolute;z-index:0;" />
+                    
+                
+				
+                    </div>
+                </div>
+				
+            </div>
+       
+       
+
+    </div>
+
+
+  
+
+   
+</body>
+
+</html>

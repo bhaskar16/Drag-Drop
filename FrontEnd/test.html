@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="UTF-8"></meta>
+    <title>Test</title>
+    <style>
+      H1 {font-size:40px;color:#00F;text-align:center;}
+    </style>
+    <script>
+	  var type = ["watchtower_1","cannon_1","boat_1","boat_2"];
+	  var top_pos = [400,350,300,500];
+	  var left_pos = [300,450,500,450];
+	  function XMLToString(oXML) {
+		//code for IE
+		if (window.ActiveXObject) { var oString = oXML.xml; return oString; }
+		// code for Chrome, Safari, Firefox, Opera, etc.
+		else { return (new XMLSerializer()).serializeToString(oXML); }
+	} function loadString() {
+        var str = '<?xml version="1.0" encoding="utf-8"?><design></design>';var i;
+		var xml = ( new window.DOMParser() ).parseFromString (str, 'application/xml');
+		var root = xml.documentElement;var newel, newtop, newleft, newatt, newTextTop, newTextLeft, splitter;
+		for(i=0;i<type.length;i++) {
+		  splitter = type[i].split("_"); newel = xml.createElement(splitter[0]);
+		  newtop = xml.createElement("top"); newleft = xml.createElement("left");
+		  newTextTop = xml.createTextNode(top_pos[i]);newTextLeft = xml.createTextNode(left_pos[i]);
+		  newatt = xml.createAttribute("type");newatt.nodeValue = splitter[1];
+		  newtop.appendChild(newTextTop);newleft.appendChild(newTextLeft);
+		  newel.appendChild(newtop);newel.appendChild(newleft);newel.setAttributeNode(newatt);
+		  root.appendChild(newel);  
+		} var xmlStr = XMLToString(xml);
+		return xmlStr;
+	} function showMe() {
+	  var str = loadString();
+	 // alert('Value: ' + str );
+	   var http = new XMLHttpRequest();
+	  var url = "/cgi-bin/edi-handler.pl";
+	  var data = str;
+	  http.open("POST", url, true);
+
+	  //Send the proper header information along with the request
+	  http.setRequestHeader("Content-type", "text/xml");
+	  http.setRequestHeader("Content-length", data.length);
+	  http.setRequestHeader("Connection", "close");
+	
+	  http.onreadystatechange = function() {//Call a function when the state changes.
+	      if(http.readyState == 4 && http.status == 200) {
+	        alert(http.responseText);
+	        window.location.href = "index.html";
+	      }
+	    }; http.send(data);
+      }
+	
+    </script>
+  </head>
+  <body>
+    <H1>This is IT Lab</H1><hr><br><br>
+	<button onclick="showMe()">Click To Load</button>
+  </body>
+</html>
